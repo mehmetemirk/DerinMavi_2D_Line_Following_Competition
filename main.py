@@ -197,7 +197,7 @@ def run_test_mode():
             sys.exit(1)
 
         solution = load_solution()
-        car = Car(100, 300, -math.pi / 2)
+        car = Car(start_x, start_y, start_angle)
 
         frames = 0
         finished = False
@@ -277,6 +277,7 @@ def run_dev_mode(debug=False):
     solution = load_solution()
 
     start_time = time.time()
+    finish_time = None
     running = True
     finished = False
     current_steering = 0.0
@@ -312,7 +313,8 @@ def run_dev_mode(debug=False):
                 b, g, r = pixel
 
                 if g > 200 and r < 50 and b < 50:
-                    print(f"FINISHED! Time: {time.time() - start_time:.2f}s")
+                    finish_time = time.time() - start_time
+                    print(f"FINISHED! Time: {finish_time:.2f}s")
                     finished = True
             else:
                 print("Out of bounds!")
@@ -324,11 +326,12 @@ def run_dev_mode(debug=False):
 
         # UI
         font = pygame.font.SysFont(None, 36)
-        elapsed = time.time() - start_time
         if finished:
+            elapsed = finish_time
             msg = f"Finished! Time: {elapsed:.2f}s"
             color = (0, 255, 0)
         else:
+            elapsed = time.time() - start_time
             msg = f"Time: {elapsed:.2f}s"
             color = (0, 0, 0)
 

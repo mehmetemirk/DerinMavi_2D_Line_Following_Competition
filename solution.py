@@ -52,9 +52,8 @@ def solution(image, current_speed, current_steering):
 
      steering = (yol_merkezi_x - width/2) / (width/2)
 
-    else: steering = 0
-
-
+    else: 
+      steering = 0
 
     if abs(steering)>0.7:
          

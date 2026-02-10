@@ -39,6 +39,7 @@ def solution(image, current_speed, current_steering):
 
     cam = gray[ int(height/2): height,:]
 
+    ters_cam = 255- cam
 
     yol = cv2.moments(ters_cam)
 
